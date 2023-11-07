@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавление поста{% endblock %}
+
+{% block body %}
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal text-body-emphasis">Добавление поста</h1>
+    <form method="post">
+        <br>
+        <input placeholder="Заголовок" type="text" class="form-control" name="title" id="title">
+        <br>
+        <input placeholder="Интро-текст" type="text" class="form-control" name="pretext" id="pretext">
+        <br>
+        <input placeholder="Автор статьи (только английские буквы, цифры)" type="text" class="form-control" name="author" id="author">
+        <br>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">!</span>
+            <input placeholder="Ключ безопасности (только английские буквы, цифры)" type="text" class="form-control" name="edit_key" id="edit_key">
+        </div>
+        <br>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Текст поста</span>
+            <textarea placeholder="Введите текст поста" rows="25" class="form-control" aria-label="Текст поста" name="text" id="text"></textarea>
+        </div>
+        <br>
+        <button class="btn btn-success" type="submit">Опубликовать</button>
+    </form>
+</div>
+{% endblock %}
