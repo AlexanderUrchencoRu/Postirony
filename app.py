@@ -12,7 +12,7 @@ class Base(DeclarativeBase):
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_SECRET_KEY'] = 'ioh438579302892jnjnlvvnoihbboinhbi3990385pooaoijbf'
+app.secret_key = 'ioh438579302892jnjnlvvnoihbboinhbi3990385pooaoijbf'
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
