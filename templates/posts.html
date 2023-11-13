@@ -4,9 +4,17 @@
 
 {% block body %}
 <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-    <h1 class="display-4 fw-normal text-body-emphasis">{{ post.title }}</h1>
+    <h1 class="text-start fw-normal text-body-emphasis">{{ post.title }}</h1>
     <br>
-    <h3 class="display-7 fw-normal text-body-emphasis">{{ post.author }}</h3>
+    <h5 class="text-start fw-normal text-body-emphasis">Автор статьи <b>{{ post.author }}</b></h3>
+    <br>
+    <pre class="text-start" style="font-family:Calibri;white-space:pre-wrap;font-size:20px;">{{ post.pretext }}</pre>
+    <br>
+    <img src="{{ post.img }}">
+    <br>
+    <br>
+    <br>
+    <hr>
     <br>
     <pre class="text-start" style="font-family:Calibri;white-space:pre-wrap;font-size:20px;">{{ post.text }}</pre>
     <br>

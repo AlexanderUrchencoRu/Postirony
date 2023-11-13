@@ -20,6 +20,7 @@ class Post(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     title: Mapped[str] = mapped_column(String, nullable=False)
     pretext: Mapped[str] = mapped_column(String, nullable=False)
+    img: Mapped[str] = mapped_column(String)
     text: Mapped[str] = mapped_column(Text, nullable=False)
     author: Mapped[str] = mapped_column(String, nullable=False)
     edit_key: Mapped[str] = mapped_column(String)
@@ -182,6 +183,7 @@ def post_editor(id, key):
             post_edit.pretext = request.form['pretext']
             post_edit.author = request.form['author']
             post_edit.text = request.form['text']
+            post_edit.img = request.form['img']
             try:
                 db.session.commit()
                 return render_template('successfully-edit.html', post=post_edit)
@@ -199,10 +201,11 @@ def create():
         title = request.form['title']
         pretext = request.form['pretext']
         author = request.form['author']
+        img = request.form['img']
         edit_key = request.form['edit_key']
         text = request.form['text']
 
-        post_create = Post(title=title, pretext=pretext, author=author, edit_key=edit_key, text=text)
+        post_create = Post(title=title, pretext=pretext, author=author, img=img, edit_key=edit_key, text=text)
         try:
             db.session.add(post_create)
             db.session.commit()
