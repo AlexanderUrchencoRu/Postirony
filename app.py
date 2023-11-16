@@ -26,7 +26,7 @@ class Post(db.Model):
     edit_key: Mapped[str] = mapped_column(String)
 
     def __repr__(self):
-        return self.title
+        return f'Название: {self.title}'
 
 
 class Comments(db.Model):
@@ -37,7 +37,7 @@ class Comments(db.Model):
     key: Mapped[str] = mapped_column(String)
 
     def __repr__(self):
-        return self.name
+        return f'Имя: {self.name}'
 
 
 with app.app_context():
@@ -64,6 +64,12 @@ def search():
         return render_template('authors-post.html', data=searching, name=name)
     else:
         return render_template('search.html')
+
+
+@app.route('/all')
+def all():
+    posts = Post.query.order_by(desc(Post.id)).all()
+    return render_template('all.html', data=posts)
 
 
 @app.route('/pname', methods=['POST', 'GET'])
