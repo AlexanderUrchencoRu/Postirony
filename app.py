@@ -8,14 +8,14 @@ from sqlalchemy import Integer, String, Text, desc
 class Base(DeclarativeBase):
     pass
 
-
+# создание приложения 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
-
+# инициализация таблицы бд
 class Post(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     title: Mapped[str] = mapped_column(String, nullable=False)
@@ -43,7 +43,7 @@ class Comments(db.Model):
 with app.app_context():
     db.create_all()
 
-
+# стринички сайта
 @app.route('/')
 def index():
     posts = Post.query.order_by(desc(Post.id)).all()
@@ -222,6 +222,6 @@ def create():
     else:
         return render_template('create.html')
 
-
+# запуск
 if __name__ == "__main__":
     app.run(debug=False, port=5000)
